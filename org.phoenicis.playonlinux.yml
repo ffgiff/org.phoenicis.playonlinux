@@ -1,27 +1,27 @@
 ---
 app-id: org.phoenicis.playonlinux
 runtime: org.freedesktop.Platform
-runtime-version: '20.08'
+runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Compat.i386
   - org.freedesktop.Sdk.Extension.toolchain-i386
-  - org.freedesktop.Sdk.Extension.openjdk11
+  - org.freedesktop.Sdk.Extension.openjdk17
 add-extensions:
   # support 32-bit apps
   org.freedesktop.Platform.Compat.i386:
     directory: lib/i386-linux-gnu
-    version: '20.08'
+    version: '21.08'
 
   org.freedesktop.Platform.Compat.i386.Debug:
     directory: lib/debug/lib/i386-linux-gnu
-    version: '20.08'
+    version: '21.08'
     no-autodownload: true
 
   org.freedesktop.Platform.GL32:
     directory: lib/i386-linux-gnu/GL
-    version: '1.4'
-    versions: '20.08;1.4'
+    version: '1.6'
+    versions: '21.08;1.6'
     subdirectories: true
     no-autodownload: true
     autodelete: false
@@ -55,13 +55,13 @@ modules:
   - name: openjdk
     buildsystem: simple
     build-commands:
-      - /usr/lib/sdk/openjdk11/install.sh
+      - /usr/lib/sdk/openjdk17/install.sh
   - name: cabextract
     buildsystem: autotools
     sources:
       - type: archive
-        url: https://www.cabextract.org.uk/cabextract-1.6.tar.gz
-        sha256: cee661b56555350d26943c5e127fc75dd290b7f75689d5ebc1f04957c4af55fb
+        url: https://www.cabextract.org.uk/cabextract-1.9.1.tar.gz
+        sha256: afc253673c8ef316b4d5c29cc4aa8445844bee14afffbe092ee9469405851ca7
   - name: openldap
     config-opts: &openldap_config_opts
       - --disable-static
@@ -73,8 +73,8 @@ modules:
       - /bin
     sources: &openldap_sources
       - type: archive
-        url: https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.4.50.tgz
-        sha256: 5cb57d958bf5c55a678c6a0f06821e0e5504d5a92e6a33240841fbca1db586b8
+        url: https://openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.5.13.tgz
+        sha256: ee3c430c4ef7b87c57b622108c7339376d6c27fbbf2767770be3de1df63d008c
   - name: openldap-32bit
     build-options:
       arch:
